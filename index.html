@@ -28,21 +28,25 @@
     <div class="card my-6 px-8 py-8 bg-white mt-32 rounded overflow-hidden shadow-lg">
         <div class="font-bold text-4xl text-center mb-2">Deriválás</div>
         <form id="derivalas">
-            <input type="text" class="py-4 px-6 bg-gray-200 focus:bg-white" id="derival" placeholder="add meg a deriválni kivánt egyenletet">
-            <input type="submit" class=" ml-2 px-4 py-3 border-2 text-blue-500 font-bold border-blue-500 bg-white hover:bg-blue-500 hover:text-white rounded" value="Küldés">
+            <input type="text" class="py-4 px-6 bg-gray-200 rounded shadow focus:bg-white" id="derival" placeholder="add meg a deriválni kivánt egyenletet" required>
+            <input type="submit" class="ml-2 px-4 py-3 border-2 text-blue-500 font-bold border-blue-500 bg-white hover:bg-blue-500 hover:text-white rounded" value="Küldés">
         </form>
     </div>
-    
-    <span class="mt-6" id="output"></span>
+    <div style="display: none" id="outputDiv" class="rounded shadow-lg  font-bold text-xl px-6 py-4 bg-white">
+        <span class="mt-6" id="output"></span>
+    </div>
 </div>
 </body>
 <script>
  const formDerivalas = document.querySelector("#derivalas").addEventListener('submit', setDerival)
  const input = document.querySelector("#derival");
  const out = document.querySelector("#output");
+ const outDiv = document.querySelector("#outputDiv");
+
     function setDerival(e) {
         e.preventDefault();
         let preDerival = input.value;
+        outDiv.style.display = "inline";
     
         var x = nerdamer(`diff(${preDerival}, x)`);
         out.innerHTML = x.toString();
