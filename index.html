@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- This the core and the only file needed if all you'll be doing is evaluating expresssions -->
+    <script src="./node_modules/nerdamer/nerdamer.core.js"></script> 
+    <!-- LOAD ADD-ONS. These files contain extended functions. See documentation -->
+    <!-- again assuming you've saved the files in root -->
+    <script src="./node_modules/nerdamer/Algebra.js"></script>
+    <script src="./node_modules/nerdamer/Calculus.js"></script>
+    <script src="./node_modules/nerdamer/Solve.js"></script>
+    <script src="./node_modules/nerdamer/Extra.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>deriválás</title>
+</head>
+<body class="bg-gray-200">
+    <ul class="flex bg-indigo-600 font-bold  px-3 py-4">
+        <li class="mr-6">
+            <a class="text-white hover:text-gray-300" href="./index.html">Deriválás</a>
+        </li>
+        <li class="mr-6">
+            <a class="text-white hover:text-gray-300" href="./integralas.html">Integrálás</a>
+        </li>
+    </ul>
+    <div class="container mx-auto px-8 flex flex-col items-center justify-center">
+    <div class="card my-6 px-8 py-8 bg-white mt-32 rounded overflow-hidden shadow-lg">
+        <div class="font-bold text-4xl text-center mb-2">Deriválás</div>
+        <form id="derivalas">
+            <input type="text" class="py-4 px-6 bg-gray-200 focus:bg-white" id="derival" placeholder="add meg a deriválni kivánt egyenletet">
+            <input type="submit" class=" ml-2 px-4 py-3 border-2 text-blue-500 font-bold border-blue-500 bg-white hover:bg-blue-500 hover:text-white rounded" value="Küldés">
+        </form>
+    </div>
+    
+    <span class="mt-6" id="output"></span>
+</div>
+</body>
+<script>
+ const formDerivalas = document.querySelector("#derivalas").addEventListener('submit', setDerival)
+ const input = document.querySelector("#derival");
+ const out = document.querySelector("#output");
+    function setDerival(e) {
+        e.preventDefault();
+        let preDerival = input.value;
+    
+        var x = nerdamer(`diff(${preDerival}, x)`);
+        out.innerHTML = x.toString();
+    }
+ 
+</script>
+</html>
